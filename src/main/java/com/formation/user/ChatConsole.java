@@ -1,11 +1,11 @@
 package com.formation.user;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.formation.service.IMessageService;
-import com.formation.service.MessageToDatabaseService;
 import com.jdbc.Message;
 
 public class ChatConsole {
@@ -13,31 +13,32 @@ public class ChatConsole {
 	private String currentUser;
 
 	@Autowired
-	private MessageToDatabaseService service;
+	private IMessageService service;
 
 	public ChatConsole(String user) {
 		this.currentUser = user;
-	}
-
-	@Autowired
-	public void setMessage(IMessageService service) {
-		this.service = (MessageToDatabaseService) service;
 	}
 
 	public void sendHelloTo(String toUser) {
 		// écrit "Hello "+toUser dans le message
 		Message newMessage = new Message();
 		newMessage.setIdmessage(1);
+		newMessage.setFromUser(currentUser);
 		newMessage.setContent("Hello !");
-		newMessage.setToUser("Nom");
+		newMessage.setToUser(toUser);
+		newMessage.setEventTime(LocalDateTime.now());
+		service.send(newMessage);
 	}
 
 	public void sendGoodbyeTo(String toUser) {
 		// écrit "Goodbye "+toUser dans le message
 		Message newMessage = new Message();
-		newMessage.setIdmessage(1);
+		newMessage.setIdmessage(2);
+		newMessage.setFromUser(currentUser);
 		newMessage.setContent("Goodbye !");
-		newMessage.setToUser("Nom");
+		newMessage.setToUser(toUser);
+		newMessage.setEventTime(LocalDateTime.now());
+		service.send(newMessage);
 	}
 
 	public void editMessage(String content, Integer idMessage) {
@@ -54,6 +55,18 @@ public class ChatConsole {
 		// Récupère tous les messages envoyés par l'utilisateur courant vers un
 		// utilisateur donné, aujourd'hui
 
+	}
+
+	public String getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(String currentUser) {
+		this.currentUser = currentUser;
+	}
+
+	public void setService(IMessageService service) {
+		this.service = service;
 	}
 
 }

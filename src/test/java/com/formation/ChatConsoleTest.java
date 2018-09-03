@@ -17,7 +17,7 @@ public class ChatConsoleTest {
 
 	@Test
 	public void shouldSimulateAConversationBetweenSamAndBob() {
-
+		this.chatConsole.setCurrentUser("sam");
 		this.chatConsole.sendHelloTo("bob");
 		this.chatConsole.sendGoodbyeTo("bob");
 		this.chatConsole.sendHelloTo("foo");
