@@ -13,11 +13,16 @@ import com.formation.user.ChatConsole;
 public class ChatConsoleTest {
 
 	@Autowired
-	private ChatConsole chat;
+	private ChatConsole chatConsole;
 
 	@Test
 	public void shouldSimulateAConversationBetweenSamAndBob() {
-		this.chat.sendHelloTo("bob");
+
+		this.chatConsole.sendHelloTo("bob");
+		this.chatConsole.sendGoodbyeTo("bob");
+		this.chatConsole.sendHelloTo("foo");
+		this.chatConsole.sendGoodbyeTo("foo");
+
 		// assertTrue("Hello bob", chat.sendHelloTo("bob"));
 		// assertTrue("Goodbye bob", chat.sendGoodbyeTo("bob"));
 		// assertTrue("foo", chat.sendHelloTo("foo"));

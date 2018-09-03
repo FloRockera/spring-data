@@ -35,14 +35,14 @@ public class MessageToDatabaseService implements IMessageService {
 
 	@Override
 	public void delete(String fromUser, String toUser) {
-		this.jdbcTemplate.update("DELETE from message where toUser = ?", toUser);
+		this.jdbcTemplate.update("DELETE from message where fromUser=? and toUser = ?", fromUser, toUser);
 
 	}
 
 	@Override
 	public List<Message> findAllMessages() {
-		// TODO Auto-generated method stub
 		return null;
+
 	}
 
 	@Override
