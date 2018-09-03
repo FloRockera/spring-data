@@ -17,11 +17,19 @@ public class ChatConsoleTest {
 
 	@Test
 	public void shouldSimulateAConversationBetweenSamAndBob() {
-		this.chatConsole.setCurrentUser("sam");
-		this.chatConsole.sendHelloTo("bob");
-		this.chatConsole.sendGoodbyeTo("bob");
-		this.chatConsole.sendHelloTo("foo");
-		this.chatConsole.sendGoodbyeTo("foo");
+
+		// Insert
+		// this.chatConsole.setCurrentUser("sam");
+		// this.chatConsole.sendHelloTo("bob");
+		// this.chatConsole.sendGoodbyeTo("bob");
+		// this.chatConsole.sendHelloTo("foo");
+		// this.chatConsole.sendGoodbyeTo("foo");
+
+		// Update
+		chatConsole.editMessage("Big Up bob !", 2);
+
+		// delete
+		// chatConsole.deleteMessageToUser("sam", "bob");
 
 		// assertTrue("Hello bob", chat.sendHelloTo("bob"));
 		// assertTrue("Goodbye bob", chat.sendGoodbyeTo("bob"));

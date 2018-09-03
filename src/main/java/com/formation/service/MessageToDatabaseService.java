@@ -29,7 +29,7 @@ public class MessageToDatabaseService implements IMessageService {
 	@Override
 	public void edit(Message editedMsg) {
 		this.jdbcTemplate.update(
-				"UPDATE message set content = ?, event_time = ?, toUser = ?, fromUser = ?, where id = ?",
+				"UPDATE message set content = ?, event_time = ?, toUser = ?, fromUser = ? where idmessage = ?",
 				editedMsg.getContent(), editedMsg.getEventTime(), editedMsg.getToUser(), editedMsg.getFromUser(),
 				editedMsg.getIdmessage());
 	}

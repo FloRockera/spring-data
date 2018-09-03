@@ -10,7 +10,7 @@ import com.jdbc.Message;
 public class MessageMapper<T> implements RowMapper {
 	public T mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Message message = new Message();
-		message.setIdmessage(rs.getInt("id"));
+		message.setIdmessage(rs.getInt("idmessage"));
 		message.setFromUser(rs.getString("fromUser"));
 		message.setToUser(rs.getString("toUser"));
 		message.setContent(rs.getString("content"));

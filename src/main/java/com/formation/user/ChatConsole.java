@@ -23,7 +23,7 @@ public class ChatConsole {
 	public void sendHelloTo(String toUser) {
 		// écrit "Hello "+toUser dans le message
 		Message newMessage = new Message();
-		newMessage.setIdmessage(2);
+		newMessage.setIdmessage(4);
 		newMessage.setFromUser(currentUser);
 		newMessage.setContent("Hello !");
 		newMessage.setToUser(toUser);
@@ -34,7 +34,7 @@ public class ChatConsole {
 	public void sendGoodbyeTo(String toUser) {
 		// écrit "Goodbye "+toUser dans le message
 		Message newMessage = new Message();
-		newMessage.setIdmessage(3);
+		newMessage.setIdmessage(5);
 		newMessage.setFromUser(currentUser);
 		newMessage.setContent("Goodbye !");
 		newMessage.setToUser(toUser);
@@ -58,7 +58,7 @@ public class ChatConsole {
 		// Supprime tous les messages vers un utilisateur depuis l'utilisateur
 		// courant
 		Message newMessage = new Message();
-		newMessage.setIdmessage(4);
+		newMessage.setIdmessage(6);
 		newMessage.setFromUser(currentUser);
 		newMessage.setContent("message à supprimer");
 		newMessage.setToUser(toUser);
