@@ -7,20 +7,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.formation.user.UserInteraction;
+import com.formation.service.IMessageService;
+import com.formation.service.MessageToDatabaseService;
+import com.formation.user.ChatConsole;
 
 @Configuration
-public class AppConfig {
+public class AppConfigMess {
 
 	private DataSource dataSource;
 
 	@Bean
-	public UserInteraction useBean() {
-		return new UserInteraction();
+	public ChatConsole useBean() {
+		return new ChatConsole("Flora");
 	}
 
 	@Autowired
-	public AppConfig(DataSource dataSource) {
+	public AppConfigMess(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
@@ -29,8 +31,9 @@ public class AppConfig {
 		return new JdbcTemplate(dataSource);
 	}
 
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
+	@Bean
+	public IMessageService service() {
+		return new MessageToDatabaseService();
 	}
 
 }
