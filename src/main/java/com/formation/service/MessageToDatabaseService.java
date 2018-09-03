@@ -1,6 +1,7 @@
 package com.formation.service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,20 +42,43 @@ public class MessageToDatabaseService implements IMessageService {
 
 	@Override
 	public List<Message> findAllMessages() {
-		return null;
+		String SQL = "SELECT * from message";
+		List<Message> messages = jdbcTemplate.query(SQL, new MessageMapper<>());
+		messages.forEach(i -> {
+			System.out.println("object : " + i);
+		});
+		return messages;
 
 	}
 
 	@Override
 	public List<Message> findMessageSendToAUserADay(String toUser, LocalDate day) {
-		// TODO Auto-generated method stub
-		return null;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String SQL = "SELECT * from message where toUser = ? and DATE(event_time) = ?";
+		List<Message> messages = jdbcTemplate.query(SQL, new Object[] { toUser, formatter.format(day) },
+				new MessageMapper<>());
+		messages.forEach(i -> {
+			System.out.println("object : " + i);
+		});
+		return messages;
 	}
 
 	@Override
 	public List<Message> findAllMessageFromUser(String fromUser) {
-		// TODO Auto-generated method stub
-		return null;
+		String SQL = "SELECT * from message where fromUser = ?";
+		List<Message> messages = jdbcTemplate.query(SQL, new Object[] { fromUser }, new MessageMapper<>());
+		messages.forEach(i -> {
+			System.out.println("object : " + i);
+		});
+		return messages;
+	}
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 
 }
