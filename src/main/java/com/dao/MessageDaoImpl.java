@@ -21,13 +21,6 @@ public class MessageDaoImpl implements MessageDao {
 
 	@Override
 	public void save(Message message) {
-		Query query = this.em.createQuery(
-				"INSERT into message (content, event_time, toUser, fromUser, idmessage) values (?,?,?,?,?)");
-		query.setParameter(1, message.getContent());
-		query.setParameter(1, message.getEventTime());
-		query.setParameter(1, message.getToUser());
-		query.setParameter(1, message.getFromUser());
-		query.setParameter(1, message.getIdmessage());
 		em.persist(message);
 	}
 
@@ -48,16 +41,19 @@ public class MessageDaoImpl implements MessageDao {
 
 	@Override
 	public List<Message> findMessagesThisADay(String toUser, LocalDate day) {
-		TypedQuery<Message> query = em.createQuery("select m from Message m where fromUser=? and event_time = ?",
-				Message.class);
+		TypedQuery<Message> query = em
+				.createQuery("select m from Message m where fromUser=:user and event_time = :time", Message.class);
+		query.setParameter("user", toUser);
+		query.setParameter("time", day);
 		List<Message> messages = query.getResultList();
 		return messages;
 	}
 
 	@Override
-	public void delete(String toUser) {
-		Query query = this.em.createQuery("DELETE from message where fromUser=? and toUser = ?", Message.class);
-		em.persist(toUser);
+	public void delete(String fromUser, String toUser) {
+		Query query = this.em.createQuery("select * from message where fromUser=? and toUser = ?", Message.class);
+		// faire une boucle
+		em.remove(parametreattendu);
 	}
 
 	@Override
