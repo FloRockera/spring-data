@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.formation.service.IMessageService;
-import com.jdbc.Message;
+import com.jdbc.MessageDto;
 
 public class ChatConsole {
 
@@ -22,7 +22,7 @@ public class ChatConsole {
 
 	public void sendHelloTo(String toUser) {
 		// écrit "Hello "+toUser dans le message
-		Message newMessage = new Message();
+		MessageDto newMessage = new MessageDto();
 		newMessage.setIdmessage(4);
 		newMessage.setFromUser(currentUser);
 		newMessage.setContent("Hello !");
@@ -33,7 +33,7 @@ public class ChatConsole {
 
 	public void sendGoodbyeTo(String toUser) {
 		// écrit "Goodbye "+toUser dans le message
-		Message newMessage = new Message();
+		MessageDto newMessage = new MessageDto();
 		newMessage.setIdmessage(5);
 		newMessage.setFromUser(currentUser);
 		newMessage.setContent("Goodbye !");
@@ -44,7 +44,7 @@ public class ChatConsole {
 
 	public void editMessage(String content, Integer idMessage) {
 		// édite le contenu du message identifié avec l'id : idMessage
-		Message newMessage = new Message();
+		MessageDto newMessage = new MessageDto();
 		newMessage.setIdmessage(idMessage);
 		newMessage.setFromUser(currentUser);
 		newMessage.setContent(content);
@@ -57,7 +57,7 @@ public class ChatConsole {
 	public void deleteMessageToUser(String fromUser, String toUser) {
 		// Supprime tous les messages vers un utilisateur depuis l'utilisateur
 		// courant
-		Message newMessage = new Message();
+		MessageDto newMessage = new MessageDto();
 		newMessage.setIdmessage(6);
 		newMessage.setFromUser(currentUser);
 		newMessage.setContent("message à supprimer");
@@ -66,7 +66,7 @@ public class ChatConsole {
 		service.delete(fromUser, toUser);
 	}
 
-	public List<Message> findMessageToUserToday(String toUser) {
+	public List<MessageDto> findMessageToUserToday(String toUser) {
 		// Récupère tous les messages envoyés par l'utilisateur courant vers un
 		// utilisateur donné, aujourd'hui
 		return service.findMessageSendToAUserADay(currentUser, LocalDate.now());

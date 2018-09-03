@@ -2,39 +2,17 @@ package com.jdbc;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Entity;
 
 @Entity
-@Table(name = "message")
-public class Message {
+public class MessageDto {
 
-	@Id
-	@Column(name = "idmessage")
 	private int idmessage;
-
-	@Column(name = "fromUser")
 	private String fromUser;
-
-	@Column(name = "toUser")
 	private String toUser;
-
-	@Column(name = "content")
 	private String content;
-
-	@Column(name = "event_time")
 	private LocalDateTime eventTime;
 
-	// Methode toString
-	@Override
-	public String toString() {
-		return "Message [idmessage=" + idmessage + ", fromUser=" + fromUser + ", toUser=" + toUser + ", content="
-				+ content + ", eventTime=" + eventTime + "]";
-	}
-
-	// Getters et setters
 	public int getIdmessage() {
 		return idmessage;
 	}

@@ -3,7 +3,7 @@ package com.formation.service;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.jdbc.Message;
+import com.jdbc.MessageDto;
 
 public interface IMessageService {
 
@@ -13,7 +13,7 @@ public interface IMessageService {
 	 * @param message
 	 *            : Le messsage à envoyer
 	 */
-	void send(Message message);
+	void send(MessageDto message);
 
 	/**
 	 * Permet d'éditer un message.
@@ -27,7 +27,7 @@ public interface IMessageService {
 	 *            En fonction de l'identifiant de message <i>le reste du message
 	 *            reste inchangé</i>
 	 */
-	void edit(Message editedMsg);
+	void edit(MessageDto editedMsg);
 
 	/**
 	 * Supprime les messages d'un utilisateur vers un autre
@@ -44,7 +44,7 @@ public interface IMessageService {
 	 *
 	 * @return une liste de tous les messages émis
 	 */
-	List<Message> findAllMessages();
+	List<MessageDto> findAllMessages();
 
 	/**
 	 * Récupère l'ensemble des messages envoyés à un utilisateur
@@ -57,7 +57,7 @@ public interface IMessageService {
 	 *
 	 * @return Une liste de messages filtrés par destinataire et par jour
 	 */
-	List<Message> findMessageSendToAUserADay(String toUser, LocalDate day);
+	List<MessageDto> findMessageSendToAUserADay(String toUser, LocalDate day);
 
 	/**
 	 * Récupère tous les messages envoyés par l'utilisateur
@@ -68,6 +68,6 @@ public interface IMessageService {
 	 *
 	 * @return Une liste des messages filtrés par expéditeur
 	 */
-	List<Message> findAllMessageFromUser(String fromUser);
+	List<MessageDto> findAllMessageFromUser(String fromUser);
 
 }
