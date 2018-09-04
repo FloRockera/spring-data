@@ -27,6 +27,10 @@ public class Message {
 	@Column(name = "event_time")
 	private LocalDateTime eventTime;
 
+	public Message(String fromUser2, String toUser2, String content2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	// Methode toString
 	@Override
 	public String toString() {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.formation.repository.MessageRepository;
 import com.formation.user.ChatConsole;
 
 @ContextConfiguration(classes = { AppConfigMess.class })
@@ -33,6 +34,15 @@ public class ChatConsoleTest {
 
 		// find
 		chatConsole.findMessageToUserToday("bob");
+
+	}
+
+	@Autowired
+	private MessageRepository mess;
+
+	@Test
+	public void test() {
+		mess.findByToUser("bob");
 
 		// assertTrue("Hello bob", chat.sendHelloTo("bob"));
 		// assertTrue("Goodbye bob", chat.sendGoodbyeTo("bob"));
